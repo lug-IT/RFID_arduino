@@ -14,7 +14,7 @@ int count=0;     // counter for buffer array
 
 //initialisation des broche pour l'ecran lcd
 
- #include <ShiftLCD.h>
+ #include "ShiftLCD.h"
 
 const int Horloge = 10;  // PWD obligatoire
 const int Data = 11;    // PWD obligatoire
@@ -64,7 +64,8 @@ void loop()
   
   if (SoftSerial.available())              // if date is comming from softwareserial port ==> data is comming from SoftSerial shield
   {
-     //memoireRFID = SoftSerial.read();
+        ouvert(); 
+    //memoireRFID = SoftSerial.read();
       while(SoftSerial.available())          // reading data into char array 
       {
         buffer[count++]=SoftSerial.read();     // writing data into array
@@ -81,7 +82,7 @@ void loop()
   if (Serial.available())      // if data is available on hardwareserial port ==> data is comming from PC or notebook
   {
     SoftSerial.write(Serial.read());       // write it to the SoftSerial shield
-    ouvert();
+
   }
   
  
